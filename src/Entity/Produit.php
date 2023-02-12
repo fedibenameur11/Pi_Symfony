@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ProduitRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
 class Produit
@@ -14,18 +15,48 @@ class Produit
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'veuillez remplir le champ du nom')]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Il faut inserer au moins {{ limit }} characteres',
+        maxMessage: 'Il faut inserer au maximum {{ limit }} characteres',
+    )]
+    #[Assert\Type(
+        type:"string",
+        message:"veuillez inserer un nom correct "
+    )]
+
     private ?string $nom = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message: 'veuillez remplir le champ du prix')]
+    
+    #[Assert\Type(
+        type:"float",
+        message:"veuillez inserer un nombre "
+    )]
+     
     private ?float $prix = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message: 'veuillez remplir le champ du quantite')]
+    #[Assert\Type(
+        type:"integer",
+        message:"veuillez inserer un nombre "
+    )]
     private ?int $quantite = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message: 'veuillez remplir le champ du poids')]
+    #[Assert\Type(
+        type:"float",
+        message:"veuillez inserer un nombre "
+    )]
     private ?float $poids = null;
 
     #[ORM\ManyToOne(inversedBy: 'prods')]
+    #[Assert\NotBlank(message: 'veuillez choisir la categorie')]
     private ?Categorie $cat = null;
 
     public function getId(): ?int
