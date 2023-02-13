@@ -66,13 +66,21 @@ class ProduitController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_produit_delete', methods: ['POST'])]
-    public function delete(Request $request, Produit $produit, ProduitRepository $produitRepository): Response
+    #[Route('/{id}/delete', name: 'app_produit_delete', methods: ['GET','POST'])]
+    /*public function delete(Request $request, Produit $produit, ProduitRepository $produitRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$produit->getId(), $request->request->get('_token'))) {
             $produitRepository->remove($produit, true);
         }
 
         return $this->redirectToRoute('app_produit_index', [], Response::HTTP_SEE_OTHER);
+    }*/
+    public function delete(Request $request, Produit $categorie)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($categorie);
+        $entityManager->flush();
+    
+        return $this->redirectToRoute('app_produit_index');
     }
 }

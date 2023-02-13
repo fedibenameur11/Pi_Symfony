@@ -66,13 +66,23 @@ class CategorieController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_categorie_delete', methods: ['POST'])]
-    public function delete(Request $request, Categorie $categorie, CategorieRepository $categorieRepository): Response
+    #[Route('/{id}/delete', name: 'app_categorie_delete', methods: ['GET','POST'])]
+    /*public function delete(Request $request, Categorie $categorie, CategorieRepository $categorieRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$categorie->getId(), $request->request->get('_token'))) {
             $categorieRepository->remove($categorie, true);
+            
         }
 
         return $this->redirectToRoute('app_categorie_index', [], Response::HTTP_SEE_OTHER);
-    }
+    }*/
+    public function delete(Request $request, Categorie $categorie)
+{
+    $entityManager = $this->getDoctrine()->getManager();
+    $entityManager->remove($categorie);
+    $entityManager->flush();
+
+    return $this->redirectToRoute('app_categorie_index');
+}
+
 }
