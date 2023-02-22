@@ -1,15 +1,15 @@
-{% extends 'base.html.twig' %}
+{% extends 'base2.html.twig' %}
 
-{% block title %}CategorieUser index{% endblock %}
+{% block title %}Role{% endblock %}
 
 {% block body %}
-    <h1>CategorieUser index</h1>
+    <h1>Role</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Nom</th>
+                <th>Role</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -19,8 +19,8 @@
                 <td>{{ categorie_user.id }}</td>
                 <td>{{ categorie_user.nom }}</td>
                 <td>
-                    <a href="{{ path('app_categorie_user_show', {'id': categorie_user.id}) }}">show</a>
-                    <a href="{{ path('app_categorie_user_edit', {'id': categorie_user.id}) }}">edit</a>
+                    <a href="{{ path('app_categorie_user_show', {'id': categorie_user.id}) }}">Afficher</a>
+                    <a href="{{ path('app_categorie_user_edit', {'id': categorie_user.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -31,5 +31,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_categorie_user_new') }}">Create new</a>
+    <a href="{{ path('app_categorie_user_new') }}">Créer nouveau</a>
 {% endblock %}

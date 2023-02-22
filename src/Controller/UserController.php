@@ -2,13 +2,19 @@
 
 namespace App\Controller;
 
+
 use App\Entity\User;
+use App\Entity\CategorieUser;
+use App\Form\ClientType;
 use App\Form\UserType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\CategorieUserRepository;
+
+
 
 #[Route('/user')]
 class UserController extends AbstractController
@@ -74,5 +80,35 @@ class UserController extends AbstractController
         }
 
         return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+    }
+    #[Route('/new/client', name: 'app_user_newc', methods: ['GET', 'POST'])]
+    public function newClient(Request $request, UserRepository $userRepository,CategorieUserRepository $categorieUserRepository): Response
+    {
+        $user = new User();
+        $CategorieUser = new CategorieUser();
+        $CategorieUser->setNom("client") ;
+        $user->setCategorieUser($CategorieUser);
+
+        $form = $this->createForm(ClientType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $categorieUserRepository->save($CategorieUser, true);
+            $userRepository->save($user, true);
+
+            return $this->redirectToRoute('app_user_index1', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('basefrom.html.twig', [
+            'user' => $user,
+            'form' => $form,
+        ]);
+    }
+    #[Route('/index/1', name: 'app_user_index1', methods: ['GET'])]
+    public function indexFront(UserRepository $userRepository): Response
+    {
+        return $this->render('/base1.html.twig', [
+            'users' => $userRepository->findAll(),
+        ]);
     }
 }

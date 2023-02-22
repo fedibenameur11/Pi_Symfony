@@ -1,9 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'base2.html.twig' %}
 
-{% block title %}User index{% endblock %}
+{% block title %}Utilisateur{% endblock %}
 
 {% block body %}
-    <h1>User index</h1>
+
+    <h1>Utilisateur</h1>
 
     <table class="table">
         <thead>
@@ -13,7 +14,7 @@
                 <th>Prenom</th>
                 <th>Email</th>
                 <th>Telephone</th>
-                <th>Categorie</th>
+                <th>Role</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -27,8 +28,8 @@
                 <td>{{ user.telephone }}</td>
                 <td>{{ user.CategorieUser }}</td>
                 <td>
-                    <a href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+                    <a href="{{ path('app_user_show', {'id': user.id}) }}">Afficher</a>
+                    <a href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -39,5 +40,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_user_new') }}">Create new</a>
+    <a href="{{ path('app_user_new') }}">Créer un utilisateur</a>
 {% endblock %}

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title> Health & Fitness | Template </title>
+    <title> Sportera's </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
@@ -46,7 +46,7 @@
                         <!-- Logo -->
                         <div class="col-xl-2 col-lg-2 col-md-1">
                             <div class="logo">
-                                <a href="index.html"><img src="{{ asset("assets_front_office/img/logo/logo.png") }}" alt=""></a>
+                                <a href="index.html"><img src="{{ asset("assets_front_office/img/logo/sp.png") }}" alt=""></a>
                             </div>
                         </div>
                         <div class="col-xl-10 col-lg-10 col-md-10">
@@ -72,7 +72,7 @@
                                     </nav>
                                 </div>
                                 <div class="header-right-btn f-right d-none d-lg-block ml-30">
-                                    <a href="from.html" class="btn header-btn">became a member</a>
+                                    <a href="{{ path('app_user_newc')}}"  class="btn header-btn">S'inscrire</a>
                                 </div>
                             </div>
                         </div>   
@@ -86,7 +86,7 @@
         </div>
         <!-- Header End -->
     </header>
-    <main>
+    <main>  {% block body %} {% endblock %}
         <!--? slider Area Start-->
         <div class="slider-area position-relative">
             <div class="slider-active">
@@ -98,7 +98,7 @@
                                 <div class="hero__caption">
                                     <span data-animation="fadeInLeft" data-delay="0.1s">with patrick potter</span>
                                     <h1 data-animation="fadeInLeft" data-delay="0.4s">Build Perfect body Shape for good and Healthy life.</h1>
-                                    <a href="from.html" class="btn hero-btn" data-animation="fadeInLeft" data-delay="0.8s">became a member</a>
+                                    <a href="from.html" class="btn hero-btn" data-animation="fadeInLeft" data-delay="0.8s">S'inscrire</a>
                                 </div>
                             </div>
                         </div>
@@ -112,7 +112,7 @@
                                 <div class="hero__caption">
                                     <span data-animation="fadeInLeft" data-delay="0.1s">with patrick potter</span>
                                     <h1 data-animation="fadeInLeft" data-delay="0.4s">Build Perfect body Shape for good and Healthy life.</h1>
-                                    <a href="from.html" class="btn hero-btn" data-animation="fadeInLeft" data-delay="0.8s">became a member</a>
+                                    <a href="from.html" class="btn hero-btn" data-animation="fadeInLeft" data-delay="0.8s">S'inscrire</a>
                                 </div>
                             </div>
                         </div>
@@ -144,7 +144,7 @@
                             </div>
                             <p class="pera-top">Brook presents your services with flexible, convenient and cdpose layouts. You can select your favorite layouts & elements for cular ts with unlimited ustomization possibilities. Pixel-perfect replication of the designers is intended.</p>
                             <p class="mb-65 pera-bottom">Brook presents your services with flexible, convefnient and chient anipurpose layouts. You can select your favorite layouts.</p>
-                            <a href="from.html" class="btn">became a member</a>
+                            <a href="from.html" class="btn">S'inscrire</a>
                         </div>
                     </div>
                 </div>

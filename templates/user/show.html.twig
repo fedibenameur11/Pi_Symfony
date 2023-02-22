@@ -1,9 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'base2.html.twig' %}
 
-{% block title %}User{% endblock %}
+{% block title %}Utilisateur{% endblock %}
 
 {% block body %}
-    <h1>User</h1>
+    <h1>Utilisateur</h1>
 
     <table class="table">
         <tbody>
@@ -28,15 +28,15 @@
                 <td>{{ user.telephone }}</td>
             </tr>
             <tr>
-                <th>Categorie</th>
+                <th>Role</th>
                 <td>{{ user.CategorieUser }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_user_index') }}">back to list</a>
+    <a href="{{ path('app_user_index') }}">List</a>
 
-    <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+    <a href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
 
     {{ include('user/_delete_form.html.twig') }}
 {% endblock %}
