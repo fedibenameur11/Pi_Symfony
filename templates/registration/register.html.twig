@@ -1,0 +1,89 @@
+{% extends 'base1.html.twig' %}
+{% block body %}
+
+<!--? Hero Start -->
+<div class="slider-area2">
+    <div class="slider-height2 d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="hero-cap hero-cap2 text-center pt-70">
+                        <h2>S'inscrire</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Hero End -->
+<!--? Contact form Start -->
+<div class="contact-form-main mt-100 mb-100">
+    <div class="container">
+        <div class="row justify-content-end">
+            <div class="col-xl-7 col-lg-7">
+                <div class="form-wrapper">
+                    <!--Section Tittle  -->
+                    <div class="form-tittle">
+                        <div class="row ">
+                            <div class="col-lg-11 col-md-10 col-sm-10">
+                                <div class="section-tittle">
+                                    <span>Inscription</span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Section Tittle  -->
+
+                    <form id="contact-form" ACTION="" ction="#" method="POST">
+
+                        <div class="row">
+
+
+
+                            {{ form_start(registrationForm,{attr:{novalidate:'novalidate'}}) }}
+                            {{ form_row(registrationForm.nom) }}
+                            {{ form_row(registrationForm.prenom) }}
+                            {{ form_row(registrationForm.email) }}
+                            {{ form_row(registrationForm.adresse) }}
+                            {{ form_row(registrationForm.code_postale, {
+                                label: 'Code postal'
+                            }) }}
+                            {{ form_row(registrationForm.telephone) }}
+                            {{ form_row(registrationForm.plainPassword, {
+                                label: 'Password'
+                            }) }}
+                            <div  class="col-lg-6 col-md-6">
+                            {{ form_row(registrationForm.agreeTerms) }}
+                            </div>
+                        <div class="submit-info">
+                            <button type="submit" class="btn">Register</button>
+                        </div>
+                            {{ form_end(registrationForm) }}
+
+
+
+                        </div>
+
+
+
+
+
+
+                    </form>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- contact left Img-->
+    <div class="from-left d-none d-lg-block">
+        <img src="{{ asset("assets_front_office/img/gallery/contact_form.png") }}" alt="">
+    </div>
+</div>
+<!-- Contact form End -->
+{% endblock %}
+
+

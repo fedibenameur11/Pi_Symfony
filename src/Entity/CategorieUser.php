@@ -30,9 +30,6 @@ class CategorieUser
     )]
     private ?string $nom = null;
 
-    #[ORM\OneToMany(mappedBy: 'categorie_user', targetEntity: User::class)]
-    private Collection $users;
-
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -51,36 +48,6 @@ class CategorieUser
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, User>
-     */
-    public function getUsers(): Collection
-    {
-        return $this->users;
-    }
-
-    public function addUser(User $user): self
-    {
-        if (!$this->users->contains($user)) {
-            $this->users->add($user);
-            $user->setCategorieUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        if ($this->users->removeElement($user)) {
-            // set the owning side to null (unless already changed)
-            if ($user->getCategorieUser() === $this) {
-                $user->setCategorieUser(null);
-            }
-        }
 
         return $this;
     }
