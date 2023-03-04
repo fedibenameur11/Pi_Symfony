@@ -91,6 +91,23 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToOne]
     private ?CategorieUser $categorie_user = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image = null;
+
+    #[ORM\Column]
+    private ?\DateTime $createdAt = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $fullname = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $googleID = null;
+
+    public function __construct()
+    {
+        $this->createdAt= new \DateTime();
+    }
+
 
 
 
@@ -250,6 +267,54 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCategorieUser(?CategorieUser $categorie_user): self
     {
         $this->categorie_user = $categorie_user;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTime
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTime $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getFullname(): ?string
+    {
+        return $this->fullname;
+    }
+
+    public function setFullname(?string $fullname): self
+    {
+        $this->fullname = $fullname;
+
+        return $this;
+    }
+
+    public function getGoogleID(): ?string
+    {
+        return $this->googleID;
+    }
+
+    public function setGoogleID(?string $googleID): self
+    {
+        $this->googleID = $googleID;
 
         return $this;
     }
