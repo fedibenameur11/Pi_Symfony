@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\UsersRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Scheb\TwoFactorBundle\Model\Email\TwoFactorInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -102,6 +103,10 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $googleID = null;
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $resetToken ;
+
+
 
     public function __construct()
     {
@@ -315,6 +320,17 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     public function setGoogleID(?string $googleID): self
     {
         $this->googleID = $googleID;
+
+        return $this;
+    }
+    public function getResetToken(): ?string
+    {
+        return $this->resetToken;
+    }
+
+    public function setResetToken(?string $resetToken): self
+    {
+        $this->resetToken = $resetToken;
 
         return $this;
     }
