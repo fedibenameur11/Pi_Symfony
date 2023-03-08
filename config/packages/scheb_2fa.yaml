@@ -1,0 +1,8 @@
+scheb_two_factor:
+  security_tokens:
+    - Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken
+    - Symfony\Component\Security\Guard\Token\PostAuthenticationGuardToken
+    - Symfony\Component\Security\Http\Authenticator\Token\PostAuthenticationToken
+    - Acme\AuthenticationBundle\Token\CustomAuthenticationToken
+  google:
+    enabled: true

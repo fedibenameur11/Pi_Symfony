@@ -7,6 +7,7 @@ use App\Form\ResetPasswordRequestFormType;
 use App\Repository\UsersRepository;
 use App\Service\SendMailService;
 use Doctrine\ORM\EntityManagerInterface;
+use Scheb\TwoFactorBundle\Security\TwoFactor\Provider\Google\GoogleAuthenticatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,6 +15,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
@@ -129,6 +131,18 @@ class SecurityController extends AbstractController
         }
         $this->addFlash('danger', 'Jeton invalide');
         return $this->redirectToRoute('app_login');
+    }
+    #[Route(path: '/2fa', name: '2fa_login')]
+    public function check2fa(GoogleAuthenticatorInterface $googleAuthenticator,TokenStorageInterface $storage)
+    {
+        $code = $googleAuthenticator->getQRContent($storage->getToken()->getUser());
+        $qrcode = "https://chart.googleapis.com/chart?cht=qr&choe=UTF-8&chs=150x150&chl=".$code;
+
+        return $this->render('security/2fa_login.html.twig',[
+            'qrCode' => $qrcode
+
+            ]);
+
     }
 
 }
