@@ -1,0 +1,83 @@
+{% extends 'base1.html.twig' %}
+
+{% block title %}app_commandes_index
+{% endblock %}
+
+{% block body %}
+
+    <!--? Hero Start -->
+    <div class="slider-area2">
+        <div class="slider-height2 d-flex align-items-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap hero-cap2 text-center pt-70">
+                            <h2>Nos commandes</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Hero End -->
+    <!--? Services Area Start -->
+    <section class="services-area pt-100 pb-150">
+        <!--? Want To work -->
+        <section class="wantToWork-area w-padding">
+            <div class="container">
+                <div class="row align-items-end justify-content-between">
+                    <div class="col-lg-6 col-md-10 col-sm-10">
+                        <div class="section-tittle">
+                            <span>voici nos commandes</span>
+                            <h2></h2>
+                        </div>
+                    </div>
+                    {#<div class="col-xl-2 col-lg-2 col-md-3">
+                            <a href="services.html" class="btn wantToWork-btn f-right">More Services</a>
+                        </div>#}
+                </div>
+            </div>
+        </section>
+        <!-- Want To work End -->
+        <div class="container">
+            <div class="row">
+                {% for commande in commandes %}
+                    {%  if commande.etat==1 %}
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-team mb-30 single-cat single-cat2 text-center mb-50">
+                            <div class="team-img">
+                                <img style="max-width: 100%; height: auto;" src="{{ asset("assets_front_office/img/comi.jpg") }}" alt="">
+                                {#<div class="team-caption">
+                                    <span>Creative derector</span>
+                                    <h2><a href="#">Jhon Sunsaev</a></h2>
+                                </div>#}
+                            </div>
+                            <div class="cat-cap">
+                                <h5><a>{{ commande.nomCommande }}</a></h5>
+                                <p></p>
+                            </div>
+                            <div class="cat-cap">
+                                <h5><a>{{ commande.dateCommande|date('d/m/Y') }}</a></h5>
+                                <p></p>
+                            </div>
+                            <div class="cat-cap">
+                                <h5><a>{{ commande.id }}</a></h5>
+                                <p></p>
+                            </div>
+                            <div class="img-cap">
+                                <a href="" class="">voir les commandes <i class="ti-arrow-right"></i></a>
+                            </div>
+                            <button onclick="window.location.href = '{{ path('app_commandes_newUser')}}';" type="button" class="btn btn-success rounded-pill m-2">create new</button>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% else %}
+                    <h2> Pas de commandes existantes </h2
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+    <!-- Services Area End -->
+
+{% endblock %}

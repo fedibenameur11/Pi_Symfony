@@ -1,0 +1,123 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}AbonnementCoach index
+{% endblock %}
+
+{% block body %}
+	<div class="col-12">
+		<div class="bg-secondary rounded h-100 p-4">
+			<h4 class="mb-4">Confirmation d'abonnement a un coach</h4>
+			<ul
+				class="nav nav-pills mb-3" id="pills-tab" role="tablist">{#<li class="nav-item" role="presentation">
+															<button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Home</button>
+														</li>
+														<li class="nav-item" role="presentation">
+															<button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</button>
+														</li>
+														<li class="nav-item" role="presentation">
+															<button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button>
+														</li>#}
+			</ul>
+			<div class="tab-content" id="pills-tabContent">
+				<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+					Ceci est une demande d'abonnement a un coach.
+					Veuillez remplir les informations restantes requises pour la validation et l'envoi de la demande.
+					Le coach va recevoir la demande et decider d'accepter ou refuser cette demande.
+				</div>
+				{#<div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+													Invidunt rebum voluptua lorem eirmod dolore. Amet no sed sanctus lorem ea. Nonumy sit stet sit magna. Rebum rebum ipsum clita erat consetetur, sit dolor sit clita et amet. Est et clita dolore takimata, sea dolores tempor erat consetetur lorem. Consetetur sea sadipscing dolor et dolores et stet, tempor elitr.
+												</div>
+												<div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+													Et diam et est sed vero ipsum voluptua dolor et, sit eos justo ipsum no ipsum amet sed aliquyam dolore, ut ipsum sanctus et consetetur. Sit ea sit clita lorem ea gubergren. Et dolore vero sanctus voluptua ipsum sadipscing amet at. Et sed dolore voluptua dolor eos tempor, erat amet.
+												</div>#}
+			</div>
+		</div>
+		<div class="bg-secondary rounded h-100 p-4">
+			<h6 class="mb-4">Horizontal Form</h6>
+			<!-- {{ form_start(form, {'attr': {'action': '{{ path("app_abonnement_confirm",  ) }}', 'method' : 'post' } }) }} -->
+			<form action="{{ path("app_abonnement_confirm" , {'coach': coach.id}) }}" method="post">
+				{{ form_widget(form._token) }}
+				<div class="row mb-3">
+				{{ form_label(form.client, 'Client', {'label_attr': {'class': 'col-sm-2 col-form-label'}}) }}
+					<!-- <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label> -->
+					<div class="col-sm-10">
+						{{ form_widget(form.client, {'attr': {'class': 'form-control','readonly':'', 'value': form.vars.value.client.nom}}) }}
+						<!-- <input type="password" class="form-control" id="inputPassword3"> -->
+					</div>
+					{{ form_errors(form.client) }}
+				</div>
+				<div class="row mb-3">
+					{{ form_label(form.coach, 'Coach', {'label_attr': {'class': 'col-sm-2 col-form-label'}}) }}
+					<!--<label for="inputEmail3" class="col-sm-2 col-form-label">Email</label> -->
+					<div class="col-sm-10">
+						{{ form_widget(form.coach, {'attr': {'class': 'form-control','readonly':'', 'value': form.vars.value.coach.nom}}) }}
+						<!-- <input type="email" class="form-control" id="inputEmail3"> -->
+					</div>
+					{{ form_errors(form.coach) }}
+				</div>
+				<div class="row mb-3">
+					{{ form_label(form.duree_abonnement, 'Durée abonnement (par nombre de mois)' ,
+						{'label_attr': {'class': 'col-sm-2 col-form-label'}}) }}
+					<!--<label for="inputEmail3" class="col-sm-2 col-form-label">Email</label> -->
+					<div class="col-sm-10">
+						{{ form_widget(form.duree_abonnement,
+							 {'attr': {'class': 'form-control','min':'1','max':'12', 'placeholder': "__ mois"}}) }}
+						<!-- <input type="email" class="form-control" id="inputEmail3"> -->
+					</div>
+					
+					
+				</div>
+				
+				<button type="submit" class="btn btn-primary">Envoyer demande</button>
+				{{ form_errors(form) }}
+			<!--{{ form_end(form) }} -->
+			</form>
+		</div>
+	</div>
+<style>
+select[readonly]
+{
+    pointer-events: none;
+}
+</style
+
+
+{% endblock %}
+
+{#
+{% block body %}
+	<h1>AbonnementCoach index</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Duree_abonnement</th>
+				<th>Client</th>
+				<th>Coach</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for abonnement_coach in abonnement_coaches %}
+				<tr>
+					<td>{{ abonnement_coach.id }}</td>
+					<td>{{ abonnement_coach.dureeAbonnement }}</td>
+					<td>{{ abonnement_coach.client.nom}}</td>
+					<td>{{ abonnement_coach.coach.nom}}</td>
+					<td>
+						<a href="{{ path('app_abonnement_coach_show', {'id': abonnement_coach.id}) }}">show</a>
+						<a href="{{ path('app_abonnement_coach_edit', {'id': abonnement_coach.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="3">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_abonnement_coach_new') }}">Create new</a>
+{% endblock %}
+#}

@@ -1,0 +1,147 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}AbonnementCoach index
+{% endblock %}
+
+{% block body %}
+	<div class="col-12">
+		<div class="bg-secondary rounded h-100 p-4">
+			<h4 class="mb-4">Coaching et abonnements</h4>
+			<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+				<li class="nav-item" role="presentation">
+					<button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Abonnements coach</button>
+				</li>
+				<li class="nav-item" role="presentation">
+					<button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Demandes d'abonnement</button>
+				</li>
+			</ul>
+			<div class="tab-content" id="pills-tabContent">
+				<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+					<p style="margin: 30px 0 30px 0">
+						Ceci est la liste d'abonnements. En cliquant sur "Voir", vous pouvez voir les details de chacun ainsi que les programmes d'entrainement
+						et de nutrition assigné par chaque coach correspondant.
+					</p>
+					<div class="table-responsive">
+						<table style="text-align: center; margin: auto;" class="table table-hover">
+							<thead>
+								<tr>
+									<th scope="col">Coach</th>
+									<th scope="col">Duree_abonnement</th>
+									<th scope="col">Date de debut</th>
+									<th scope="col">Date de fin</th>
+									<th scope="col">Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for abonnement_coach in abonnement_coaches %}
+									<tr>
+										<td>{{ abonnement_coach.coach.nom}}</td>
+										<td>{{ abonnement_coach.dureeAbonnement }}</td>
+										<td>{{ abonnement_coach.dureeDebut|date('Y-m-d')}}</td>
+										<td>{{ abonnement_coach.dureeFin|date('Y-m-d') }}</td>
+										<td>
+											<a href="{{ path('app_abonnement_coach_show', {'id': abonnement_coach.id}) }}">
+												<button type="button" class="btn btn-success m-2">Voir</button>
+											</a>
+										</td>
+									</tr>
+								{% else %}
+									<tr>
+										<td style="color:blue;font-weight: bold;" colspan="5">Pas d'abonnement a un coach existant</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+					<p style="margin: 30px 0 30px 0">
+						Ceci sont vos demandes d'abonnement aux coach. 
+											Vous pouvez modifier ou annuler les demandes qui ne sont pas deja accepter par un coach.
+					</p>
+					<div class="table-responsive">
+						<table style="text-align: center; margin: auto;" class="table table-hover">
+							<thead>
+								<tr>
+									<th scope="col">Coach</th>
+									<th scope="col">Duree_abonnement</th>
+									<th scope="col">Statut</th>
+									<th scope="col">Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for abonnement_coach in demandes_abonnement %}
+									<tr>
+										<td>{{ abonnement_coach.coach.nom}}</td>
+										<td>{{ abonnement_coach.dureeAbonnement }}</td>
+										<td>
+											{% if abonnement_coach.statut == false %}
+												<div style="color:#f16e00">En attente</div>
+											{% else %}
+												<div style="color:#198754">Demande accepté</div>
+											{% endif %}
+										</td>
+										<td>
+											{% if abonnement_coach.statut == false %}
+												<a href="{{ path('app_abonnement_coach_edit', {'id': abonnement_coach.id}) }}">
+													<button type="button" class="btn btn-info m-2">Modifier</button>
+												</a>
+												<form style="display:inline-block;" id="my-form" method="post" action="{{ path('app_demande_abonnement_delete', {'id': abonnement_coach.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+													<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ abonnement_coach.id) }}">
+													<button class="btn btn-primary m-2">Annuler demande</button>
+												</form>
+											{% endif %}
+										</td>
+									</tr>
+								{% else %}
+									<tr>
+										<td style="color:blue;font-weight: bold;" colspan="5">Pas d'abonnement a un coach existant</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
+
+{#
+{% block body %}
+	<h1>AbonnementCoach index</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Duree_abonnement</th>
+				<th>Client</th>
+				<th>Coach</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for abonnement_coach in abonnement_coaches %}
+				<tr>
+					<td>{{ abonnement_coach.id }}</td>
+					<td>{{ abonnement_coach.dureeAbonnement }}</td>
+					<td>{{ abonnement_coach.client.nom}}</td>
+					<td>{{ abonnement_coach.coach.nom}}</td>
+					<td>
+						<a href="{{ path('app_abonnement_coach_show', {'id': abonnement_coach.id}) }}">show</a>
+						<a href="{{ path('app_abonnement_coach_edit', {'id': abonnement_coach.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="3">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_abonnement_coach_new') }}">Create new</a>
+{% endblock %}
+#}

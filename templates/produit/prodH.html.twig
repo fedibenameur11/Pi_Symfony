@@ -1,0 +1,148 @@
+{% extends 'base1_1.html.twig' %}
+
+{% block title %}Produit index
+{% endblock %}
+
+{% block body %}
+ <!--? Hero Start -->
+        <div class="slider-area2">
+            <div class="slider-height2 d-flex align-items-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="hero-cap hero-cap2 text-center pt-70">
+                                <h2>Nos produits</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Hero End -->
+        <!--? Services Area Start -->
+        <section class="services-area pt-100 pb-150">
+            <!--? Want To work -->
+            <section class="wantToWork-area w-padding">
+                <div class="container">
+                    <div class="row align-items-end justify-content-between">
+                        <div class="col-lg-6 col-md-10 col-sm-10">
+                            <div class="section-tittle">
+                                <span>A votre service 24h/7j</span>
+                                <h2>Repoussez vos limites au maximum pour atteindre vos objectifis</h2>
+                                
+                            </div>
+                        </div>
+                        {#<div class="col-xl-2 col-lg-2 col-md-3">
+                            <a href="services.html" class="btn wantToWork-btn f-right">More Services</a>
+                        </div>#}
+                    </div>
+                </div>
+            </section>
+            <div class="filter-container">
+            <form method="get" class="form" >
+        <div>
+            </h2><label for="name">Nom :</label></h2>
+            <input type="text" id="name" name="name" value="{{ name }}" class="filter-input">
+        </div>
+        <div>
+            <label for="priceMin">Prix minimum :</label>
+            <input type="number" id="priceMin" name="priceMin" value="{{ priceMin }}" class="filter-input">
+        </div>
+        <div>
+            <label for="priceMax">Prix maximum :</label>
+            <input type="number" id="priceMax" name="priceMax" value="{{ priceMax }}" class="filter-input">
+        </div>
+        <div>
+            <button type="submit" class="filter-button">Rechercher</button>
+            </form>
+            </div>
+            <div  class=" filter-container2">
+            <form method="get">
+        <label  for="sortField"><h5>Trier par :     </h5></label>
+        <select  id="sortField" name="sortField">
+            <option class="filter-input" value="nom" {% if sortField == 'nom' %}selected{% endif %}>Nom</option>
+            <option class="filter-input" value="prix" {% if sortField == 'prix' %}selected{% endif %}>Prix</option>
+        </select>
+
+        <label for="sortOrder"><h5>Ordre :     </h5></label>
+        <select id="sortOrder" name="sortOrder">
+            <option class="filter-input" value="ASC" {% if sortOrder == 'ASC' %}selected{% endif %}>Croissant</option>
+            <option class="filter-input" value="DESC" {% if sortOrder == 'DESC' %}selected{% endif %}>Décroissant</option>
+        </select>
+
+        <button type="submit" class="filter-button">Trier</button>
+    </form>
+    </div>
+            <!-- Want To work End -->
+            <div class="container">
+                <div class="row">
+                    {% for p in produits %}
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-team mb-30 single-cat single-cat2 text-center mb-50">
+                            <div class="team-img">
+                                <img style="max-width: 100%; height: auto;" src="{{ asset('uploads/produit/' ~ p.getImageP()) }}" alt="Image">
+                            </div>
+                            <div class="cat-cap">
+                                <h5><a>{{ p.nom }}</a></h5>
+                                <p>{{p.prix}} TND</p>
+                                <p>Disponible</p>
+                            </div>
+                            <div class="img-cap">
+                                <a href="" class="">Acheter <i class="ti-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+						<h2> Pas de produis existant </h2>
+                    {% endfor %}
+                    
+                </div>
+            </div>
+        </section>
+        <!-- Services Area End -->
+<style>
+.filter-container {
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.filter-container2  {
+  justify-content: left;
+  align-items: left;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+/* Style pour les champs de filtre */
+.filter-input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  outline: none;
+}
+
+/* Style pour les boutons de filtre */
+.filter-button {
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.form {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+label {
+  flex: 1 0 20%;
+  margin-right: 10px;
+}
+input, button {
+  flex: 1 0 75%;
+}
+</style>
+{% endblock %}

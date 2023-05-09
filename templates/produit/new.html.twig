@@ -1,0 +1,13 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}New Produit{% endblock %}
+
+{% block body %}
+    <h1>Create new Produit</h1>
+
+    {{ include('produit/_form.html.twig') }}
+
+    <a href="{{ path('app_produit_index') }}">
+    <button class="btn btn-success m-2 " type= "button">Revenir en arriere</button>
+    </a>
+{% endblock %}

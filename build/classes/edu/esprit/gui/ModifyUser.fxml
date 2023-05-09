@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" spacing="10" style="-fx-background-color: red;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.gui.ModifyUserController">
+     <GridPane hgap="10" vgap="10">
+        <Label prefHeight="17.0" prefWidth="52.0" text="Nom" GridPane.columnIndex="0" GridPane.rowIndex="0">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+         </font></Label>
+        <TextField fx:id="nomField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Label text="Prénom" GridPane.columnIndex="0" GridPane.rowIndex="1">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+         </font></Label>
+        <TextField fx:id="prenomField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label text="Email" GridPane.columnIndex="0" GridPane.rowIndex="2">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+         </font></Label>
+        <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Label alignment="CENTER" text="Password" textAlignment="JUSTIFY" GridPane.columnIndex="0" GridPane.rowIndex="3">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+         </font></Label>
+        <TextField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <Label text="Adresse" GridPane.columnIndex="0" GridPane.rowIndex="4">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+         </font></Label>
+        <TextField fx:id="adresseField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        <Label text="Téléphone" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="5" >
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+         </font></Label>
+        <TextField fx:id="telephoneField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+        <Label text="Code Postale" GridPane.columnIndex="0" GridPane.rowIndex="6">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+         </font></Label>
+        <TextField fx:id="codePostaleField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <columnConstraints>
+         <ColumnConstraints />
+         <ColumnConstraints />
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+      </rowConstraints>
+    </GridPane>
+    <Button fx:id="modifyButton" style="-fx-background-color: black; -fx-text-fill: white;" text="Modifier">
+      <font>
+         <Font name="Berlin Sans FB Bold" size="12.0" />
+      </font></Button>
+</VBox>

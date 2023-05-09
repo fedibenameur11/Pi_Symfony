@@ -68,7 +68,7 @@ class GoogleAuthenticator extends OAuth2Authenticator implements AuthenticationE
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
         // change "app_homepage" to some route in your app
-        $targetUrl = $this->router->generate('app_test');
+        $targetUrl = $this->router->generate('app_users_index');
 
         return new RedirectResponse($targetUrl);
 

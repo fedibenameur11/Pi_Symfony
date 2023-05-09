@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ProgrammeSemaine{% endblock %}
+
+{% block body %}
+    <h1>Create new ProgrammeSemaine</h1>
+
+    {{ include('programme_semaine/_form.html.twig') }}
+
+    <a href="{{ path('app_programme_semaine_index') }}">back to list</a>
+{% endblock %}

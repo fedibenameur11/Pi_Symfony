@@ -1,0 +1,116 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title> Health & Fitness | Template </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset("assets_front_office/img/logo/logo_true.png") }}">
+
+	<!-- CSS here -->
+	<link rel="stylesheet" href="{{ asset("assets_front_office/css/bootstrap.min.css") }}">
+	<link rel="stylesheet" href="{{ asset("assets_front_office/css/owl.carousel.min.css") }}">
+	<link rel="stylesheet" href="{{ asset("assets_front_office/css/slicknav.css") }}">
+    <link rel="stylesheet" href="{{ asset("assets_front_office/css/flaticon.css") }}">
+    <link rel="stylesheet" href="{{ asset("assets_front_office/css/gijgo.css") }}">
+    <link rel="stylesheet" href="{{ asset("assets_front_office/css/animate.min.css") }}">
+    <link rel="stylesheet" href="{{ asset("assets_front_office/css/animated-headline.css") }}">
+	<link rel="stylesheet" href="{{ asset("assets_front_office/css/magnific-popup.css") }}">
+	<link rel="stylesheet" href="{{ asset("assets_front_office/css/fontawesome-all.min.css") }}">
+	<link rel="stylesheet" href="{{ asset("assets_front_office/css/themify-icons.css") }}">
+	<link rel="stylesheet" href="{{ asset("assets_front_office/css/slick.css") }}">
+	<link rel="stylesheet" href="{{ asset("assets_front_office/css/nice-select.css") }}">
+	<link rel="stylesheet" href="{{ asset("assets_front_office/css/style.css") }}">
+</head>
+<body>
+    <!-- ? Preloader Start -->
+    <!--<div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="{{ asset("assets_front_office/img/logo/sp.png") }}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <!-- Preloader Start -->
+    <header>
+        <!--? Header Start -->
+        <div class="header-area header-transparent">
+            <div class="main-header header-sticky">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <!-- Logo -->
+                        <div class="col-xl-2 col-lg-2 col-md-1">
+                            <div class="logo">
+                                <a href="index.html"><img style="width:90px; height:auto;"
+                                src="{{ asset('assets_front_office/img/logo/sp.png') }}" alt="">
+                                <h1 style="display:inline-block; color:#ffebd4;">Sportera's</h1>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xl-10 col-lg-10 col-md-10">
+                            <div class="menu-main d-flex align-items-center justify-content-end">
+                                <!-- Main-menu -->
+                                <div class="main-menu f-right d-none d-lg-block">
+                                    <nav>
+                                        <ul id="navigation">
+                                            <li><a href="{{ path('app_categorie_indexF') }}">Categorie/Produit</a></li>
+                                            <li><a href="{{ path('app_coach') }}">Coachs sportifs</a></li>
+                                            <li><a href="{{ path('app_question_news')}}">Forums</a></li>
+                                            <li><a href="{{ path('app_salle_index2')}}">Salles</a></li>
+                                            <li><a href="{{ path('liv_test')}}">Livraisons</a></li>
+                                            <li><a href="{{ path('comm_test')}}">Commandes</a></li>
+                                            {#<li><a href="index.html">Home</a></li>
+                                            <li><a href="about.html">About</a></li>
+                                            <li><a href="">Services</a></li>
+                                            <li><a href="schedule.html">schedule</a></li>
+                                            <li><a href="gallery.html">gallery</a></li>
+                                            <li><a href="">Salle</a>
+                                                <ul class="submenu">
+                                                    <a href="blog.html">liste des favoris</a></li>
+                                                    <!--<li><a href="blog_details.html">Blog Details</a></li>
+                                                    <li><a href="elements.html">Element</a></li>-->
+                                                </ul>
+                                            </li>
+                                            <li><a href="contact.html">Contact</a></li>#}
+                                        </ul>
+                                    </nav>
+                                </div>
+                                
+                            </div>
+                        </div>   
+                        <!-- Mobile Menu -->
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
+    <main>
+
+    {% block body %}{% endblock %}
+        <!--? slider Area Start-->
+        <div class="slider-area position-relative">
+            <div class="slider-active">
+                <!-- Single Slider -->
+                <div class="single-slider slider-height d-flex align-items-center">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-7 col-lg-9 col-md-8 col-sm-9">
+                                
+                            </div>
+                        </div>
+                    </div>          
+                </div>
+                
+            </div>
+        
+        </div>
+        <!-- slider Area End-->

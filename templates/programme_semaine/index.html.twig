@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ProgrammeSemaine index{% endblock %}
+
+{% block body %}
+    <h1>ProgrammeSemaine index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Numero_semaine</th>
+                <th>Nutrition_planning</th>
+                <th>Entrainement_planning</th>
+                <th>Objectif_semaine</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for programme_semaine in programme_semaines %}
+            <tr>
+                <td>{{ programme_semaine.id }}</td>
+                <td>{{ programme_semaine.numeroSemaine }}</td>
+                <td>{{ programme_semaine.nutritionPlanning }}</td>
+                <td>{{ programme_semaine.entrainementPlanning }}</td>
+                <td>{{ programme_semaine.objectifSemaine }}</td>
+                <td>
+                    <a href="{{ path('app_programme_semaine_show', {'id': programme_semaine.id}) }}">show</a>
+                    <a href="{{ path('app_programme_semaine_edit', {'id': programme_semaine.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_programme_semaine_new') }}">Create new</a>
+{% endblock %}

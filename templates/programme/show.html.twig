@@ -1,0 +1,153 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Programme
+{% endblock %}
+
+{% block body %}
+	<div class="col-12" id="render_pdf">
+		<div class="bg-secondary rounded h-100 p-4">
+			<h3 class="mb-4">Programme</h3>
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>
+                        <span style="color:#f9ffff;">Coach :</span> {{ programme.abonnementCoach.coach.nom }}
+                        </th>
+                        <th>
+                        <span style="color:#f9ffff;">Client :</span> {{ programme.abonnementCoach.client.nom }}
+                        </th>
+					</tr>
+					<tr>
+						<th>
+                        <span style="color:#f9ffff;">Duree de l'abonnement : </span>{{ programme.abonnementCoach.dureeDebut|date('Y-m-d') }}
+                         -  {{ programme.abonnementCoach.dureeFin|date('Y-m-d') }} | 
+                        {{ programme.abonnementCoach.dureeAbonnement }} mois | {{ programme.nombreSemaines }} Semaines
+                        </th>
+                        <th>
+                        <span style="color:#f9ffff;">Niveau : </span>{{ programme.niveau}}
+                        </th>
+					</tr>
+                    <tr>
+						<th>
+                        <span style="color:#f9ffff;">Objectif du programme : </span>{{ programme.objectifProgramme}}
+                        </th>
+                        <th>
+                            <a href="{{ path('app_programme_edit', {'id': programme.id}) }}">
+						    <button type="button" class="btn btn-primary m-2">Modifier Objectif|Niveau</button>
+					        </a>
+                        </th>
+					</tr>
+				</tbody>
+			</table>
+			<div class="nav-container">
+				<nav>
+					<div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        {% for prog_semaine in programme.programmeSemaines %}
+						<button class="nav-link" 
+                        id="nav-prog{{programme.id}}-{{prog_semaine.numeroSemaine}}-tab" data-bs-toggle="tab" 
+                        data-bs-target="#nav-prog{{programme.id}}-{{prog_semaine.numeroSemaine}}" 
+                        type="button" role="tab" aria-controls="nav-prog-{{prog_semaine.numeroSemaine}}" aria-selected="false">
+							Semaine {{prog_semaine.numeroSemaine +1}} :
+                            {{ prog_semaine.getStartAndEndDates()['start_date']|date('Y-m-d')}}
+                             - {{prog_semaine.getStartAndEndDates()['end_date']|date('Y-m-d')}}
+                        </button>
+                        {% endfor %}
+					</div>
+				</nav>
+			</div>
+			<div class="tab-content pt-3" id="nav-tabContent">
+                {% for prog_semaine in programme.programmeSemaines %}
+				<div class="tab-pane fade" id="nav-prog{{programme.id}}-{{prog_semaine.numeroSemaine}}" role="tabpanel" 
+                    aria-labelledby="nav-prog{{programme.id}}-{{prog_semaine.numeroSemaine}}-tab">
+                    <div style="margin:20px 0 20px 0">
+                    <a href="{{ path('app_abonnement_coach_programme_renderpdf', {'id1': programme.id, 'id2' : prog_semaine.id}) }}">
+						<button type="button" class="btn btn-primary m-2">Telecharger en PDF</button>
+					</a>
+                    <div style="float:right">
+                        <a style="float:right" href="{{ path('app_programme_semaine_edit', {'id': prog_semaine.id}) }}">
+                            <button type="button" class="btn btn-success m-2">Mettre a jour le programme de la semiane</button>
+                        </a>
+                    </div>
+                </div>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>Objectif de la semaine</th>
+                                <td>{{prog_semaine.objectifSemaine|nl2br}}</td>
+                            </tr>
+                            <tr>
+                                <th>Planning d'entrainement</th>
+                                <td>{{prog_semaine.entrainementPlanning|nl2br}}</td>
+                            </tr>
+                            <tr>
+                                <th>Planning de nutrition</th>
+                                <td>{{prog_semaine.nutritionPlanning|nl2br}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+				</div>
+                {% endfor %}
+			</div>
+            
+		</div>
+	</div>
+	<style>
+		.nav-container {
+			overflow-x: auto;
+		}
+
+		.nav-tabs {
+			display: flex;
+			flex-wrap: nowrap;
+		}
+
+		.nav-tabs .nav-link {
+			white-space: nowrap;
+			margin-right: 15px;
+		}
+	</style>
+    {#<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    // check if the user is on the PDF download page
+    if (location.href.includes('app_abonnement_coach_programme_renderpdf')) {
+        // activate the tab
+        $('#nav-prog{{programme.id}}-{{prog_semaine.numeroSemaine}}').addClass('active show');
+    }
+    </script>#}
+{% endblock %}
+
+{#
+    <h1>Programme</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ programme.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombre_semaines</th>
+                <td>{{ programme.nombreSemaines }}</td>
+            </tr>
+            <tr>
+                <th>Objectif_programme</th>
+                <td>{{ programme.objectifProgramme }}</td>
+            </tr>
+            <tr>
+                <th>Niveau</th>
+                <td>{{ programme.niveau }}</td>
+            </tr>
+            <tr>
+                <th>Programme</th>
+                <td> {{ dump(programWeek) }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_programme_index') }}">back to list</a>
+
+    <a href="{{ path('app_programme_edit', {'id': programme.id}) }}">edit</a>
+
+    {{ include('programme/_delete_form.html.twig') }}
+
+#}

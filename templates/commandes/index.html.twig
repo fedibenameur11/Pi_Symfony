@@ -1,0 +1,220 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Commandes index{% endblock %}
+
+{% block body %}
+
+    <h1>Commandes en attente </h1>
+    {% for message in app.flashes('info') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+    {% endfor %}
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Date_commande</th>
+            <th>Nom_commande</th>
+
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for commande in commandes %}
+            {% if commande.etat == 0 %}
+                <tr>
+                    <td>{{ commande.id }}</td>
+                    <td>{{ commande.dateCommande|date('d/m/Y') }}</td>
+                    <td>{{ commande.nomCommande }}</td>
+                    <td>
+                        <button onclick="window.location.href = '{{ path('accepterCommande', {'id': commande.id}) }}';" type="button" class="btn btn-info rounded-pill m-2">accepter</button>
+                        <button onclick="window.location.href = '{{ path('refuserCommande', {'id': commande.id}) }}';" type="button" class="btn btn-danger m-2">refuser</button>
+                    </td>
+
+
+                </tr>
+
+            {% endif %}
+        {% endfor %}
+        {% if commandes|length == 0 %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endif %}
+        </tbody>
+    </table>
+
+    <br><br><br>
+
+    <h1>Commandes acceptées </h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date_commande</th>
+                <th>Nom_commande</th>
+
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commande in commandes %}
+            {% if commande.etat == 1 and commandes|length >0%}
+            <tr>
+                <td>{{ commande.id }}</td>
+                <td>{{ commande.dateCommande|date('d/m/Y') }}</td>
+                <td>{{ commande.nomCommande }}</td>
+                <td>
+                    <button onclick="window.location.href = '{{ path('app_commandes_show', {'id': commande.id}) }}';" type="button" class="btn btn-info rounded-pill m-2">show</button>
+                    <button onclick="window.location.href = '{{ path('app_commandes_edit', {'id': commande.id}) }}';" type="button" class="btn btn-warning m-2">edit</button>
+                <td>
+                    {{ include('commandes/_delete_form.html.twig') }}
+                </td>
+
+                </td>
+
+
+            </tr>
+
+            {% endif %}
+        {% endfor %}
+        {% if commandes|length == 0 %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endif %}
+        </tbody>
+    </table>
+    <br><br><br>
+    <h1>Commandes refusées </h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Date_commande</th>
+            <th>Nom_commande</th>
+
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for commande in commandes %}
+            {% if commande.etat == -1 %}
+                <tr>
+                    <td>{{ commande.id }}</td>
+                    <td>{{ commande.dateCommande|date('d/m/Y') }}</td>
+                    <td>{{ commande.nomCommande }}</td>
+                    <td>
+                        <button onclick="window.location.href = '{{ path('app_commandes_show', {'id': commande.id}) }}';" type="button" class="btn btn-info rounded-pill m-2">show</button>
+                        <button onclick="window.location.href = '{{ path('app_commandes_edit', {'id': commande.id}) }}';" type="button" class="btn btn-warning m-2">edit</button>
+                    <td>
+                        {{ include('commandes/_delete_form.html.twig') }}
+                    </td>
+
+                    </td>
+
+
+                </tr>
+
+            {% endif %}
+        {% endfor %}
+        {% if commandes|length == 0 %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endif %}
+        </tbody>
+    </table>
+
+    <button onclick="window.location.href = '{{ path('app_commandes_new')}}';" type="button" class="btn btn-success rounded-pill m-2">create new</button>
+    {{ knp_pagination_render(commandes) }}
+    <style>
+        .rounded {
+            border-radius: 5px !important;
+        }
+        .bg-secondary {
+            background-color: #191C24 !important;
+        }
+        .p-4 {
+            padding: 1.5rem !important;
+        }
+        .h-100 {
+            height: 100% !important;
+        }
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        user agent stylesheet
+        div {
+            display: block;
+        }
+        .g-4, .gy-4 {
+            --bs-gutter-y: 1.5rem;
+        }
+        .g-4, .gx-4 {
+            --bs-gutter-x: 1.5rem;
+        }
+        .row {
+            --bs-gutter-x: 1.5rem;
+            --bs-gutter-y: 0;
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: calc(var(--bs-gutter-y) * -1);
+            margin-right: calc(var(--bs-gutter-x) / -2);
+            margin-left: calc(var(--bs-gutter-x) / -2);
+        }
+        body {
+            margin: 0;
+            font-family: "Open Sans",sans-serif;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #6C7293;
+            background-color: #000;
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
+        :root {
+            --primary: #EB1616;
+            --secondary: #191C24;
+            --light: #6C7293;
+            --dark: #000000;
+        }
+        :root {
+            --bs-blue: #0d6efd;
+            --bs-indigo: #6610f2;
+            --bs-purple: #6f42c1;
+            --bs-pink: #d63384;
+            --bs-red: #dc3545;
+            --bs-orange: #fd7e14;
+            --bs-yellow: #ffc107;
+            --bs-green: #198754;
+            --bs-teal: #20c997;
+            --bs-cyan: #0dcaf0;
+            --bs-white: #fff;
+            --bs-gray: #6c757d;
+            --bs-gray-dark: #343a40;
+            --bs-primary: #EB1616;
+            --bs-secondary: #191C24;
+            --bs-success: #198754;
+            --bs-info: #0dcaf0;
+            --bs-warning: #ffc107;
+            --bs-danger: #dc3545;
+            --bs-light: #6C7293;
+            --bs-dark: #000;
+            --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            --bs-gradient: linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0));
+        }
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+    </style>
+
+
+{% endblock %}

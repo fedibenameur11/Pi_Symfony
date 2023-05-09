@@ -30,6 +30,9 @@ class CategorieUser
     )]
     private ?string $nom = null;
 
+    #[ORM\OneToMany(mappedBy: 'categorie_user', targetEntity: User::class)]
+    private Collection $users;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();

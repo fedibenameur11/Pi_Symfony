@@ -1,0 +1,12 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Edit ProgrammeSemaine{% endblock %}
+
+{% block body %}
+
+    {{ include('programme_semaine/_form.html.twig', {
+        'button_label': 'Mettre à jour',
+        'titre' : 'Modifier un programme de semaine'
+    }) }}
+
+{% endblock %}

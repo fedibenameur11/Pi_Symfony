@@ -1,0 +1,30 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}AbonnementSalle{% endblock %}
+
+{% block body %}
+    <center><h1>Abonnement Salle</h1></center>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ abonnement_salle.id }}</td>
+            </tr>
+            <tr>
+                <th>Duree_abonnement</th>
+                <td>{{ abonnement_salle.dureeAbonnement }}</td>
+            </tr>
+            <tr>
+                <th>Nom salle</th>
+                <td>{{ abonnement_salle.getSalle }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <center><a href="{{ path('app_abonnement_salle_index') }}">
+    <button class="btn btn-success m-2 " type= "button">Revenir en arriere</button></a></center>
+
+    
+   
+{% endblock %}

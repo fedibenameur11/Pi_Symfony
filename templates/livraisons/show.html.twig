@@ -1,0 +1,60 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Livraisons{% endblock %}
+
+{% block body %}
+    <h1>Livraisons</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ livraison.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom_livraisons</th>
+                <td>{{ livraison.nomLivraisons }}</td>
+            </tr>
+            <tr>
+                <th>Date_livraisons</th>
+                <td>{{ livraison.dateLivraisons|date('d/m/Y') }}</td>
+            </tr>
+            <tr>
+                <th>Duree_livraison</th>
+                <td>{{ livraison.dureeLivraison }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button onclick="window.location.href = '{{ path('app_livraisons_index')}}';" type="button" class="btn btn-primary m-2"><i class="fa fa-home me-2"></i>back to list</button>
+
+    <button onclick="window.location.href = '{{ path('app_livraisons_edit', {'id': livraison.id}) }}';" type="button" class="btn btn-warning m-2">edit</button>
+
+    {{ include('livraisons/_delete_form.html.twig') }}
+    <!-- Élément pour afficher le code QR -->
+    <div id="mon_qr_code"></div>
+
+    <!-- Inclusion de la bibliothèque QRCode.js -->
+    <script type="text/javascript" src="{{ asset('assets/js/qrcodejs-master/qrcode.min.js') }}"></script>
+
+    <!-- Script pour générer le code QR -->
+    <script type="text/javascript">
+        var qrcode;
+
+        function generateQR() {
+            var url = "{{ path('app_livraisons_show', {'id': livraison.id}) }}";
+            qrcode.clear();
+            qrcode.makeCode(url);
+        }
+
+        window.onload = function() {
+            qrcode = new QRCode("mon_qr_code", {
+                width: 128,
+                height: 128
+            });
+        }
+    </script>
+
+    <!-- Bouton pour générer le code QR -->
+    <button onclick="generateQR()" type="button" class="btn btn-warning m-2">Générer le code QR</button>
+{% endblock %}

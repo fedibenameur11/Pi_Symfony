@@ -1,0 +1,58 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Produit index
+{% endblock %}
+
+{% block body %}
+	<div class="filter-container">
+		<div class="bg-secondary rounded h-100 p-4">
+			<h6 class="mb-4">Produit index</h6>
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">Id</th>
+						<th scope="col">Nom</th>
+						<th scope="col">Prix</th>
+						<th scope="col">Quantite</th>
+						<th scope="col">Poids</th>
+						<th scope="col">Category</th>
+						<th scope="col">Image</th>
+						<th scope="col">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for produit in produits %}
+						{% if produit.quantite <= 10 %}
+						{#	{% set emailSent = produit.sendEmail(produit.nom) %} #}
+						{{ render(controller('App\\Controller\\ProduitController::sendEmail',{'name' : produit.nom})) }}
+							<tr>
+								<td>{{ produit.id }}</td>
+								<td>{{ produit.nom }}</td>
+								<td>{{ produit.prix }}</td>
+								<td>{{ produit.quantite }}</td>
+								<td>{{ produit.poids }}</td>
+								<td>{{ produit.cat }}</td>
+								<td><img style="max-width: 20%; height: auto;" src="{{ asset('uploads/produit/'~ produit.imageP) }}" alt="image"></td>
+								<td>
+									<a href="{{ path('app_produit_show', {'id': produit.id}) }}">
+										<button class="btn btn-light m-2  " type="button">Voir</button>
+									</a>
+									<a href="{{ path('app_produit_edit', {'id': produit.id}) }}">
+										<button class="btn btn-success m-2  " type="button">Modifier</button>
+									</a>
+									<a href="{{ path('app_produit_delete', {'id': produit.id}) }}">
+										<button class="btn btn-primary m-2  " type="button">Supprimer</button>
+									</a>
+								</td>
+							</tr>
+						{% endif %}
+
+					{% else %}
+						<tr>
+							<td colspan="6">no records found</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+
+		{% endblock %}

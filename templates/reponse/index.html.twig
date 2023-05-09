@@ -1,0 +1,44 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Reponses index{% endblock %}
+
+{% block body %}
+<div class="bg-secondary rounded h-100 p-4">
+    <center><h1>Reponse</h1></center>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>contenurep</th>
+            <th>createdAt</th>
+            <th>User</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for reponse in reponse %}
+            <tr>
+                <td>{{ reponse.id }}</td>
+                <td>{{ reponse.rep }}</td>
+                <td>{% if reponse.createdAt is not null %}{{ reponse.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                {% if reponse.user is not null %}
+                    <td>{{ reponse.user.nom }}</td>
+                {% endif %}
+
+                <td>
+                    <a href="{{ path('app_reponse_show', {'id': reponse.id}) }}">show</a>
+                    <a href="{{ path('app_reponse_edit', {'id': reponse.id}) }}">edit</a>
+                    <a href="{{ path('app_reponse_delete', {'id': reponse.id}) }}">delete</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    {% endblock %}

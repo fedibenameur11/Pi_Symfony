@@ -1,0 +1,15 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Edit AbonnementCoach{% endblock %}
+
+{% block body %}
+
+    {{ include('abonnement_coach/_form.html.twig', {
+        'button_label': 'Mettre à jour',
+        'titre':'Modifier un abonnement coach',
+        'description':"Vous pouvez modifer un abonnement coach d'un client",
+        'route_retour':path('app_abonnement_coach_index')
+    }) }}
+
+     
+{% endblock %}

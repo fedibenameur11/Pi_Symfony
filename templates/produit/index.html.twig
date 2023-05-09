@@ -1,0 +1,130 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Produit index
+{% endblock %}
+
+{% block body %}
+	<div class="filter-container">
+		<form method="get">
+			<div>
+				<label for="name">Nom :</label>
+				<input type="text" id="name" name="name" value="{{ name }}" class="filter-input">
+			</div>
+			<!-- category -->
+			<div>
+				<label for="category">Catégorie :</label>
+				<select id="category" name="category" class="filter-button">
+					<option value="">Tous les catégories</option>
+					<option value="3">Matériels</option>
+					<option value="4">Accessoires</option>
+					<option value="5">Compléments alimentaires</option>
+
+				</select>
+			</div>
+			<div>
+				<label for="priceMin">Prix minimum :</label>
+				<input type="number" id="priceMin" name="priceMin" value="{{ priceMin }}" class="filter-input">
+			</div>
+			<div>
+				<label for="priceMax">Prix maximum :</label>
+				<input type="number" id="priceMax" name="priceMax" value="{{ priceMax }}" class="filter-input">
+			</div>
+			<div>
+				<button type="submit" class="filter-button">Rechercher</button>
+			</form>
+		</div>
+		<div class="bg-secondary rounded h-100 p-4">
+			<h6 class="mb-4">Produit index</h6>
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">Id</th>
+						<th scope="col">Nom</th>
+						<th scope="col">Prix</th>
+						<th scope="col">Quantite</th>
+						<th scope="col">Poids</th>
+						<th scope="col">Category</th>
+						<th scope="col">Image</th>
+						<th scope="col">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for produit in produits %}
+						<tr>
+							<td>{{ produit.id }}</td>
+							<td>{{ produit.nom }}</td>
+							<td>{{ produit.prix }}</td>
+							<td>{{ produit.quantite }}</td>
+							<td>{{ produit.poids }}</td>
+							<td>{{ produit.cat }}</td>
+							<td><img style="max-width: 20%; height: auto;" src="{{ asset('uploads/produit/'~ produit.imageP) }}" alt="image"></td>
+							<td>
+								<a href="{{ path('app_produit_show', {'id': produit.id}) }}">
+									<button class="btn btn-light m-2  " type="button">Voir</button>
+								</a>
+								<a href="{{ path('app_produit_edit', {'id': produit.id}) }}">
+									<button class="btn btn-success m-2  " type="button">Modifier</button>
+								</a>
+								<a href="{{ path('app_produit_delete', {'id': produit.id}) }}">
+									<button class="btn btn-primary m-2  " type="button">Supprimer</button>
+								</a>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="6">no records found</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			<a href="{{ path('app_produit_new') }}">
+				<button class="btn btn-success m-2  " type="button">Creer un nouveau</button>
+			</a>
+
+			<a href="{{ path('app_produit_index_json_supprvssvi') }}">
+				<button class="btn btn-success m-2  " type="button">vérifier la quantité</button>
+			</a>
+			<style>
+				.filter-container {
+					justify-content: center;
+					align-items: center;
+					margin-bottom: 20px;
+				}
+
+				/* Style pour les champs de filtre */
+				.filter-input {
+					padding: 8px;
+					border: 1px solid #ccc;
+					border-radius: 4px;
+					font-size: 16px;
+					outline: none;
+				}
+
+				/* Style pour les boutons de filtre */
+				.filter-button {
+					padding: 8px 16px;
+					background-color: #4CAF50;
+					color: white;
+					border: none;
+					border-radius: 4px;
+					font-size: 16px;
+					cursor: pointer;
+				}
+				form {
+					display: flex;
+					justify-content: center;
+					flex-direction: column;
+				}
+				label {
+					flex: 1 0 20%;
+					margin-right: 10px;
+					display: block; /* make the label a block-level element */
+					margin-bottom: 10px;
+				}
+				input,
+				button {
+					flex: 1 0 75%;
+					margin-bottom: 10px;
+				}
+			</style>
+		{% endblock %}

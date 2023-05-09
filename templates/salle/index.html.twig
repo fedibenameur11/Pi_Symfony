@@ -1,0 +1,62 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Salle index{% endblock %}
+
+{% block body %}
+<div class="bg-secondary rounded h-100 p-4">
+    <center><h1 class="mb-4">Salle</h1></center>
+    {{ form_start(form) }}
+    <div class="row my-3">
+        <div class="col-3">
+            {{ form_widget(form.searchValue, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="col-1">
+            <button class="btn btn-light" type="submit">Search</button>
+        </div>
+    </div>
+    {{ form_end(form) }}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nom_salle</th>
+                <th scope="col">Adresse_salle</th>
+                <th scope="col">Num_telephone</th>
+                <th scope="col">Codepostal</th>
+                <th scope="col">Ville</th>
+                <th scope="col">Prix_abonnement</th>
+                <th scope="col">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        
+        {% for salle in salles %}
+            <tr>
+                <td>{{ salle.id }}</td>
+                <td>{{ salle.nomSalle }}</td>
+                <td>{{ salle.adresseSalle }}</td>
+                <td>{{ salle.numTelephone }}</td>
+                <td>{{ salle.codepostal }}</td>
+                <td>{{ salle.ville }}</td>
+                <td>{{ salle.prixAbonnement }}</td>
+                <td>
+                    <a href="{{ path('app_salle_show', {'id': salle.id}) }}">
+                    <button class="btn btn-light m-2  " type= "button">Voir</button></a>
+                    <a href="{{ path('app_salle_edit', {'id': salle.id}) }}">
+                    <button class="btn btn-success m-2  " type= "button">Modifier</button></a>
+                    <a href="{{ path('app_salle_delete',{'id': salle.id}) }}">
+                    <button class="btn btn-primary m-2 " type= "button">Supprimer</button></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+     <a href="{{ path('app_salle_new') }}">
+     <center><button class="btn btn-success m-2  " type= "button">Créer un nouveau</button></center>
+     </a>
+    
+{% endblock %}

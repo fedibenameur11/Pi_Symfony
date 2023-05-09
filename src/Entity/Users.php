@@ -8,6 +8,7 @@ use Scheb\TwoFactorBundle\Model\Google\TwoFactorInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\ORM\Mapping\Column;
 use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: UsersRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
@@ -30,7 +31,10 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface, TwoFac
      *
      * @ORM\Column(type="json")
      */
-    private $roles = [];
+    #[ORM\ManyToOne(inversedBy: 'users', targetEntity: CategorieUser::class)]
+    #[Column(name: 'roles')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $roles = [] ;
 
     /**
      * @var string The hashed password
@@ -116,7 +120,9 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface, TwoFac
     }
 
 
-
+    public function __toString() {
+        return $this->nom;
+    }
 
 
     public function getId(): ?int

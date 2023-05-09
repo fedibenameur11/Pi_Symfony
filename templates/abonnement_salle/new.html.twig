@@ -1,0 +1,13 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}New AbonnementSalle{% endblock %}
+
+{% block body %}
+    <h1>Nouveau AbonnementSalle</h1>
+
+    {{ include('abonnement_salle/_form.html.twig') }}
+
+    <a href="{{ path('app_abonnement_salle_index') }}">
+    <button class="btn btn-success m-2  " type= "button">Revenir en arriere</button></a>
+    
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}AbonnementSalle index{% endblock %}
+
+{% block body %}
+<div class="bg-secondary rounded h-100 p-4">
+    <center><h1 class="mb-4">Abonnement Salle</h1></center>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Duree_abonnement</th>
+                <th scope="col">Nom salle</th>
+
+                <th scope="col">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for abonnement_salle in abonnement_salles %}
+            <tr>
+                <td>{{ abonnement_salle.id }}</td>
+                <td>{{ abonnement_salle.dureeAbonnement }}</td>
+                <td>{{ abonnement_salle.getSalle }}</td>
+
+                <td>
+                    <a href="{{ path('app_abonnement_salle_show', {'id': abonnement_salle.id}) }}">
+                    <button class="btn btn-light m-1  btn-sm" type= "button">Voir</button></a>
+                    <a href="{{ path('app_abonnement_salle_edit', {'id': abonnement_salle.id}) }}">
+                    <button class="btn btn-success m-1 btn-sm " type= "button">Modifier</button></a>
+                    <a href="{{ path('app_abonnement_salle_delete', {'id': abonnement_salle.id}) }}">
+                    <button class="btn btn-primary m-1  btn-sm" type= "button">Supprimer</button></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+             {% endfor %}
+
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_abonnement_salle_new') }}">
+    <center><button class="btn btn-success m-1 " type= "button">Créer un nouveau</button></center>
+    </a>
+
+{% endblock %}

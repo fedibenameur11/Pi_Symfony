@@ -10,7 +10,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset("assets_front_office/img/favicon.ico") }}">
 
     <!-- Favicon -->
-    <link href="{{ asset('assets_back_office/img/favicon.ico') }}" rel="icon">
+    <link href="{{ asset('assets_back_office/img/logo_true.png') }}" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -49,7 +49,7 @@
                 <a href="index.html" class="navbar-brand mx-4 mb-3">
                     <div style="height: 50px; display: flex; align-items: center;position: relative; right: 5px;">
                         <img style="max-width: 30%; height: auto; margin: 0 auto;"
-                             src="{{ asset('assets_back_office/img/logo_true.png') }}">
+                            src="{{ asset('assets_back_office/img/logo_true.png') }}">
                         <h5 style="color:#ffebd4;position: relative; right: 10px;font-family: "Teko";">Sportera's</h5>
                     </div>
                 </a>
@@ -64,7 +64,7 @@
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="index.html" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    {#<a href="index.html" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>#}
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Utilisateurs</a>
                         <div class="dropdown-menu bg-transparent border-0">
@@ -74,10 +74,51 @@
 
                         </div>
                     </div>
-                    <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a>
-                    <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a>
-                    <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>
-                    <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Coaching</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+
+                            <a href="{{ path('app_abonnement_coach_index')}}" class="dropdown-item">Abonnements coachs </a>
+                            <a href="{{ path('app_demande_abonnement_client')}}" class="dropdown-item">Suivis abonnements client</a>
+                            <a href="{{ path('app_demande_abonnement_coach')}}" class="dropdown-item">Suivis abonnements coach</a>
+                        </div>
+                    </div>
+                    {#<a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a>
+                    <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a>#}
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Produit</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="{{ path('app_categorie_index') }}" class="nav-item nav-link" ><i class="fa fa-table me-2"></i>Categorie</a>
+                            <a href="{{ path('app_produit_index') }}" class="nav-item nav-link" ><i class="fa fa-table me-2"></i>Tous les produits</a>
+
+                            <!--<a href="signup.html" class="dropdown-item">Categorie</a>
+                            <a href="404.html" class="dropdown-item">404 Error</a>
+                            <a href="blank.html" class="dropdown-item active">Blank Page</a>-->
+
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Question/Reponses</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="{{ path('app_question_index')}}" class="dropdown-item">Questions</a>
+                            <a href="{{ path('app_reponse_index')}}" class="dropdown-item">Reponses</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Salles et abonnements </a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="{{ path('app_salle_index')}}" class="dropdown-item">Salles</a>
+                            <a href="{{ path('app_abonnement_salle_index')}}" class="dropdown-item">Abonnements salle</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Livraisons et Commandes</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="{{ path('app_livraisons_index')}}" class="dropdown-item">Livraisons</a>
+                            <a href="{{ path('app_commandes_index')}}" class="dropdown-item">Commandes</a>
+                        </div>
+                    </div>
+                    {#<a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Pages</a>
                         <div class="dropdown-menu bg-transparent border-0">
@@ -86,7 +127,7 @@
                             <a href="404.html" class="dropdown-item">404 Error</a>
                             <a href="blank.html" class="dropdown-item active">Blank Page</a>
                         </div>
-                    </div>
+                    </div>#}
                 </div>
             </nav>
         </div>
@@ -188,11 +229,7 @@
 
             <!-- Blank Start -->
             <div class="container-fluid pt-4 px-4">
-                <div class="row vh-100 bg-secondary rounded align-items-center justify-content-center mx-0">
-                    <div class="col-md-6 text-center">
-                        {% block body %}{% endblock %}
-                    </div>
-                </div>
+                    {% block body %}{% endblock %}
             </div>
             <!-- Blank End -->
 

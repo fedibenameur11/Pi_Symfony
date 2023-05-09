@@ -1,0 +1,13 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}New AbonnementCoach{% endblock %}
+
+{% block body %}
+
+    {{ include('abonnement_coach/_form.html.twig', {
+        'titre': 'Ajouter un nouveau abonnement coach',
+        'description':'Vous pouvez ajouter des abonnements au coach pour les clients',
+        'route_retour':path('app_abonnement_coach_index')
+    }) }}
+
+{% endblock %}

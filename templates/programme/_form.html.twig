@@ -1,0 +1,9 @@
+<div class="col-12">
+    <div class="bg-secondary rounded h-100 p-4">
+        <h4 class="mb-4">{{titre}}</h4>
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
+        {{ form_end(form) }}
+    </div>
+</div>

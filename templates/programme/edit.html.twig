@@ -1,0 +1,12 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Edit Programme{% endblock %}
+
+{% block body %}
+
+    {{ include('programme/_form.html.twig', {
+        'button_label': 'Mettre a jour',
+        'titre' : "Modifier l'obejctif et le niveau du programme"
+    }) }}
+
+{% endblock %}

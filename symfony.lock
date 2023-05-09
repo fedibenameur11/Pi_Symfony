@@ -62,6 +62,9 @@
             "./config/packages/karser_recaptcha3.yaml"
         ]
     },
+    "knplabs/knp-paginator-bundle": {
+        "version": "v5.9.0"
+    },
     "knpuniversity/oauth2-client-bundle": {
         "version": "2.13",
         "recipe": {

@@ -1,0 +1,48 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Salle{% endblock %}
+
+{% block body %}
+    <center><h1>Salle</h1></center>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ salle.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom_salle</th>
+                <td>{{ salle.nomSalle }}</td>
+            </tr>
+            <tr>
+                <th>Adresse_salle</th>
+                <td>{{ salle.adresseSalle }}</td>
+            </tr>
+            <tr>
+                <th>Num_telephone</th>
+                <td>{{ salle.numTelephone }}</td>
+            </tr>
+            <tr>
+                <th>Codepostal</th>
+                <td>{{ salle.codepostal }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ salle.ville }}</td>
+            </tr>
+            <tr>
+                <th>Prix_abonnement</th>
+                <td>{{ salle.prixAbonnement }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <center><a href="{{ path('app_salle_index') }}">
+    <button class="btn btn-success m-2 " type= "button">Revenir en arriere</button></a></center>
+
+    
+
+    
+ 
+{% endblock %}

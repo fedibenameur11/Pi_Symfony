@@ -1,0 +1,32 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Reponses{% endblock %}
+
+{% block body %}
+    <center><h1>Reponses</h1></center>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ reponse.id }}</td>
+        </tr>
+        <tr>
+            <th>Contenu</th>
+            <td>{{ reponse.rep }}</td>
+        </tr>
+        <tr>
+            <th>createdAt</th>
+
+            <td>{% if reponse.createdAt is not null %}{{ reponse.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+
+        </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_reponse_index') }}">back to list</a>
+
+    <a href="{{ path('app_reponse_edit', {'id': reponse.id}) }}">edit</a>
+
+
+{% endblock %}

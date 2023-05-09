@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ProgrammeSemaine{% endblock %}
+
+{% block body %}
+    <h1>ProgrammeSemaine</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ programme_semaine.id }}</td>
+            </tr>
+            <tr>
+                <th>Numero_semaine</th>
+                <td>{{ programme_semaine.numeroSemaine }}</td>
+            </tr>
+            <tr>
+                <th>Nutrition_planning</th>
+                <td>{{ programme_semaine.nutritionPlanning }}</td>
+            </tr>
+            <tr>
+                <th>Entrainement_planning</th>
+                <td>{{ programme_semaine.entrainementPlanning }}</td>
+            </tr>
+            <tr>
+                <th>Objectif_semaine</th>
+                <td>{{ programme_semaine.objectifSemaine }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_programme_semaine_index') }}">back to list</a>
+
+    <a href="{{ path('app_programme_semaine_edit', {'id': programme_semaine.id}) }}">edit</a>
+
+    {{ include('programme_semaine/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Categorie index{% endblock %}
+
+{% block body %}
+<div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Categorie index</h6>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Id</th>
+                                        <th scope="col">Nom</th>
+                                        <th scope="col">Image</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                  {% for categorie in categories %}
+            <tr>
+                <td>{{ categorie.id }}</td>
+                <td>{{ categorie.nom }}</td>
+                <td><td><img style="max-width: 20%; height: auto;" src="{{ asset('uploads/categorie/'~ categorie.imageC) }}" alt="image"></td></td>
+                <td>
+                    <a href="{{ path('app_categorie_show', {'id': categorie.id}) }}">
+                    <button class="btn btn-light m-2  " type= "button">Voir</button></a>
+                    <a href="{{ path('app_categorie_edit', {'id': categorie.id}) }}">
+                    <button class="btn btn-success m-2  " type= "button">Modifier</button>
+                    </a>
+                    <a href="{{ path('app_categorie_delete', {'id': categorie.id}) }}">
+                    <button class="btn btn-primary m-2 " type= "button">Supprimer</button>
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}  
+                                </tbody>
+    </table>
+
+    <a href="{{ path('app_categorie_new') }}">
+    <button class="btn btn-success m-2  " type= "button">Creer un nouveau</button>
+    </a>
+{% endblock %}
+
+
